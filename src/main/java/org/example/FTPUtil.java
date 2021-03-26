@@ -342,7 +342,7 @@ public class FTPUtil {
                 //判断为txt文件则解析
                 if (file.isFile()) {
                     String fileName = file.getName();
-                    if (fileName.endsWith(".txt")) {
+                    if (fileName.endsWith(".bz2")) {
                         in = ftp.retrieveFileStream(new String(file.getName().getBytes("UTF-8"), "ISO-8859-1"));
                         reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
                         String temp;
@@ -387,7 +387,7 @@ public class FTPUtil {
         //test.uploadFile(ftp, "C:\\下载\\你好.jpg", "/");
         //test.moveFile(ftp, "/file", "/txt/temp");
         //test.deleteByFolder(ftp, "/txt");
-        test.readFileByFolder(ftp, "/");
+        test.readFileByFolder(ftp, "/SwanLocalData/share/LOCAL/ncrad/TDMOSAIC");
         test.closeFTP(ftp);
         System.exit(0);
     }
