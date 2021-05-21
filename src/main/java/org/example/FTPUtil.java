@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import java.net.SocketException;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
@@ -48,6 +49,8 @@ public class FTPUtil {
             ftp.setConnectTimeout(50000);
             // 设置中文编码集，防止中文乱码
             ftp.setControlEncoding("UTF-8");
+            // 在下载或上传文件之前，设置文件编码类型为二进制文件，问题解决。（我是放在ftpclient初始化的时候就设置好）
+            ftp.setFileType(FTP.BINARY_FILE_TYPE);
             if (!FTPReply.isPositiveCompletion(ftp.getReplyCode())) {
                 log.info("未连接到FTP，用户名或密码错误");
                 ftp.disconnect();
